@@ -33,6 +33,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.gittest.cksrb.coiladmin.R;
 /**
  * A login screen that offers login via email/password.
  */
