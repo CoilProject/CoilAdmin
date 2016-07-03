@@ -24,6 +24,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.gittest.cksrb.coiladmin.R;
 import com.gittest.cksrb.coiladmin.gcm.QuickstartPreferences;
 import com.gittest.cksrb.coiladmin.gcm.RegisterationIntentService;
 import com.gittest.cksrb.coiladmin.volley.MyVolley;
@@ -32,8 +33,6 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.gittest.cksrb.coiladmin.R;
 /**
  * A login screen that offers login via email/password.
  */
@@ -64,7 +63,7 @@ public class LoginActivity extends AppCompatActivity{
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
-    private View mLoginFormView;
+    private View mLoginFormView = findViewById(R.id.login_form);
 
     private String email;
 
@@ -102,8 +101,7 @@ public class LoginActivity extends AppCompatActivity{
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
-//        mProgressView = findViewById(R.id.login_progress);
+        //        mProgressView = findViewById(R.id.login_progress);
     }
 
     /**
