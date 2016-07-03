@@ -43,6 +43,8 @@ public class RegisterationIntentService extends IntentService {
             synchronized (TAG) {
                 // GCM 앱을 등록하고 획득한 설정파일인 google-services.json을 기반으로 SenderID를 자동으로 가져온다.
                 String default_senderId = getString(R.string.gcm_defaultSenderId);
+                //apply plugin: 'com.google.gms.google-services'
+
                 // GCM 기본 scope는 "GCM"이다.
                 String scope = GoogleCloudMessaging.INSTANCE_ID_SCOPE;
                 // Instance ID에 해당하는 토큰을 생성하여 가져온다.
