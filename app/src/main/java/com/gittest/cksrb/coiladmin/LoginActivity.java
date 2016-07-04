@@ -198,15 +198,22 @@ public class LoginActivity extends AppCompatActivity{
         return new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Log.d(TAG, response.toString());
+                Log.d(TAG,"Login success"+ response.toString());
                 try {
-                    if(response.getBoolean("login")){
+                   // if(response.getBoolean("login")){
+                    if(response.getString("message").equals("Is this your message ? 01045104782")){
                         Toast.makeText(LoginActivity.this,response.getString("message"), Toast.LENGTH_SHORT).show();
 //                        app.user_id = email;
                         //여기다가 메인액티비티로가는거 추가
-                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        Log.d(TAG,"Make Intent");
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                        Log.d(TAG,"Start Activity");
                         startActivity(intent);
+
+                        Log.d(TAG,"To be finish");
                         finish();
+                        Log.d(TAG,"finished");
                     }else{
                         Toast.makeText(LoginActivity.this, response.getString("error_message"), Toast.LENGTH_SHORT).show();
                     }
