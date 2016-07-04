@@ -76,38 +76,38 @@ public class MainActivity extends AppCompatActivity
     private void  prepareRequestData() throws JSONException{
         JSONObject obj1 = new JSONObject();
 
-        obj1.put("store_id",123);
+        obj1.put("store_id","123");
         obj1.put("store_name","GGIGO");
         obj1.put("created","2016 7 4 Mon");
-        obj1.put("content","50% discount");
+        obj1.put("request","50% discount");
 
         JSONObject obj2 = new JSONObject();
 
-        obj2.put("store_id",456);
+        obj2.put("store_id","456");
         obj2.put("store_name","Coffee");
         obj2.put("created","2016 7 5 Tus");
-        obj2.put("content","10% discount");
+        obj2.put("request","10% discount");
 
         JSONObject obj3 = new JSONObject();
 
-        obj3.put("store_id",456);
+        obj3.put("store_id","789");
         obj3.put("store_name","Coffee");
         obj3.put("created","2016 7 5 Tus");
-        obj3.put("content","10% discount");
+        obj3.put("request","10% discount");
 
         JSONObject obj4 = new JSONObject();
 
-        obj4.put("store_id",456);
+        obj4.put("store_id","111");
         obj4.put("store_name","Coffee");
         obj4.put("created","2016 7 5 Tus");
-        obj4.put("content","10% discount");
+        obj4.put("request","10% discount");
 
         JSONObject obj5 = new JSONObject();
 
-        obj5.put("store_id",456);
+        obj5.put("store_id","000");
         obj5.put("store_name","Coffee");
         obj5.put("created","2016 7 5 Tus");
-        obj5.put("content","10% discount");
+        obj5.put("request","10% discount");
 
         RequestInfo requestInfo = new RequestInfo(obj1);
         requestInfoList.add(requestInfo);

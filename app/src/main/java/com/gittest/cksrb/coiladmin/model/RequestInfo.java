@@ -7,21 +7,21 @@ import org.json.JSONObject;
  * Created by cksrb on 2016. 7. 4..
  */
 public class RequestInfo {
-    private int storeId;    //may equals phone number
+    private String storeId;    //may equals phone number
     private String storeName;
     private String created;
     private String request;
 
     public RequestInfo(JSONObject obj) throws JSONException {
-        this.storeId = obj.getInt("store_id");
+        this.storeId = obj.getString("store_id");
         this.storeName = obj.getString("store_name");
         this.created = obj.getString("created");
-        this.request = obj.getString("content");
+        this.request = obj.getString("request");
     }
 
-    public int getStoreId(){return storeId;}
+    public String getStoreId(){return storeId;}
 
-    public void setStoreId(int storeId){this.storeId=storeId;}
+    public void setStoreId(String storeId){this.storeId=storeId;}
 
     public String getStoreName(){return storeName;}
 
