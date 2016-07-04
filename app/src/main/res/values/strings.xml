@@ -15,5 +15,4 @@
     </string>
 
     <string name="volley_network_fail">인터넷 연결이 불안정합니다</string>
-    <string name="gcm_defaultSenderId">ddfadfadsf</string>
 </resources>

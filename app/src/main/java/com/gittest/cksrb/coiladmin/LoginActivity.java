@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity{
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
-    private View mLoginFormView = findViewById(R.id.login_form);
+    private View mLoginFormView;
 
     private String email;
 
@@ -100,6 +100,7 @@ public class LoginActivity extends AppCompatActivity{
             }
         });
 
+        mLoginFormView = findViewById(R.id.login_form);
         //        mProgressView = findViewById(R.id.login_progress);
     }
 
@@ -202,6 +203,7 @@ public class LoginActivity extends AppCompatActivity{
                     if(response.getBoolean("login")){
                         Toast.makeText(LoginActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
 //                        app.user_id = email;
+                        //여기다가 메인액티비티로가는거 추가
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);
                         finish();
