@@ -201,7 +201,7 @@ public class LoginActivity extends AppCompatActivity{
                 Log.d(TAG, response.toString());
                 try {
                     if(response.getBoolean("login")){
-                        Toast.makeText(LoginActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this,response.getString("message"), Toast.LENGTH_SHORT).show();
 //                        app.user_id = email;
                         //여기다가 메인액티비티로가는거 추가
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
