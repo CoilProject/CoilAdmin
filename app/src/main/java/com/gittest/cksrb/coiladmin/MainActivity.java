@@ -3,6 +3,9 @@ package com.gittest.cksrb.coiladmin;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,8 +16,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.gittest.cksrb.coiladmin.model.RequestInfo;
+import com.gittest.cksrb.coiladmin.util.RequestAdapter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private List<RequestInfo> requestInfoList = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private RequestAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +56,74 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+        mAdapter = new RequestAdapter(requestInfoList);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mAdapter);
+
+        try {
+            prepareRequestData();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
+    private void  prepareRequestData() throws JSONException{
+        JSONObject obj1 = new JSONObject();
+
+        obj1.put("store_id",123);
+        obj1.put("store_name","GGIGO");
+        obj1.put("created","2016 7 4 Mon");
+        obj1.put("content","50% discount");
+
+        JSONObject obj2 = new JSONObject();
+
+        obj2.put("store_id",456);
+        obj2.put("store_name","Coffee");
+        obj2.put("created","2016 7 5 Tus");
+        obj2.put("content","10% discount");
+
+        JSONObject obj3 = new JSONObject();
+
+        obj3.put("store_id",456);
+        obj3.put("store_name","Coffee");
+        obj3.put("created","2016 7 5 Tus");
+        obj3.put("content","10% discount");
+
+        JSONObject obj4 = new JSONObject();
+
+        obj4.put("store_id",456);
+        obj4.put("store_name","Coffee");
+        obj4.put("created","2016 7 5 Tus");
+        obj4.put("content","10% discount");
+
+        JSONObject obj5 = new JSONObject();
+
+        obj5.put("store_id",456);
+        obj5.put("store_name","Coffee");
+        obj5.put("created","2016 7 5 Tus");
+        obj5.put("content","10% discount");
+
+        RequestInfo requestInfo = new RequestInfo(obj1);
+        requestInfoList.add(requestInfo);
+
+        requestInfo = new RequestInfo(obj2);
+        requestInfoList.add(requestInfo);
+
+        requestInfo = new RequestInfo(obj3);
+        requestInfoList.add(requestInfo);
+
+        requestInfo = new RequestInfo(obj4);
+        requestInfoList.add(requestInfo);
+
+        requestInfo = new RequestInfo(obj5);
+        requestInfoList.add(requestInfo);
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
