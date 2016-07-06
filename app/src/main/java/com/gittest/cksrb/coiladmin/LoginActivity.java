@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity{
 
     private final String TAG = "LoginActivity";
 
-    private final String server_url = "http://ljs93kr2.cafe24.com/coil/backend/test/network_test.php";
+    private final String server_url = "http://ljs93kr2.cafe24.com/coil/backend/login/do_login.php";
     private JSONObject loginObj;
 
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity{
     // debug_mode
     private final boolean debug_mode = true;
     // version_code
-    private final int version_code = -1;
+    private final int version_code = 1;
 
 
     // GCM references
@@ -180,12 +180,13 @@ public class LoginActivity extends AppCompatActivity{
         }
     }
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
 
-        if(!email.contains("010")||email.length()!=11)
-            return false;
+        //if(!email.contains("010")||email.length()!=11)
+        //    return false;
 
-        return true;
+        //return true;
+
+        return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
@@ -200,21 +201,14 @@ public class LoginActivity extends AppCompatActivity{
             public void onResponse(JSONObject response) {
                 Log.d(TAG,"Login success"+ response.toString());
                 try {
-                   // if(response.getBoolean("login")){
-                    if(response.getString("message").equals("Is this your message ? 01045104782")){
+                    if(response.getBoolean("login")){
                         Toast.makeText(LoginActivity.this,response.getString("message"), Toast.LENGTH_SHORT).show();
 //                        app.user_id = email;
-                        //여기다가 메인액티비티로가는거 추가
-                        Log.d(TAG,"Make Intent");
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-
-                        Log.d(TAG,"Start Activity");
                         startActivity(intent);
-
-                        Log.d(TAG,"To be finish");
                         finish();
-                        Log.d(TAG,"finished");
-                    }else{
+                    }
+                    else{
                         Toast.makeText(LoginActivity.this, response.getString("error_message"), Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
