@@ -10,7 +10,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.gittest.cksrb.coiladmin.R;
-import com.gittest.cksrb.coiladmin.LoginActivity;
+import com.gittest.cksrb.coiladmin.ui.LoginActivity;
 /**
  * Created by myZZUNG on 2016. 5. 6..
  */

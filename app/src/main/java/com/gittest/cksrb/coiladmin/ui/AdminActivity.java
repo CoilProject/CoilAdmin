@@ -1,4 +1,4 @@
-package com.gittest.cksrb.coiladmin;
+package com.gittest.cksrb.coiladmin.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.gittest.cksrb.coiladmin.R;
 import com.gittest.cksrb.coiladmin.model.RequestInfo;
 import com.gittest.cksrb.coiladmin.util.RequestAdapter;
 
@@ -25,7 +26,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity
+public class AdminActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private List<RequestInfo> requestInfoList = new ArrayList<>();

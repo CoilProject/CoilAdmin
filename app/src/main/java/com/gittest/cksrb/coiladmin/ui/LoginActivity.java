@@ -1,4 +1,4 @@
-package com.gittest.cksrb.coiladmin;
+package com.gittest.cksrb.coiladmin.ui;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -24,8 +24,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.gittest.cksrb.coiladmin.CoilAdminApplication;
+import com.gittest.cksrb.coiladmin.R;
 import com.gittest.cksrb.coiladmin.gcm.QuickstartPreferences;
 import com.gittest.cksrb.coiladmin.gcm.RegisterationIntentService;
+import com.gittest.cksrb.coiladmin.util.SystemMain;
 import com.gittest.cksrb.coiladmin.volley.MyVolley;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -39,10 +42,11 @@ public class LoginActivity extends AppCompatActivity{
 
     private final String TAG = "LoginActivity";
 
-    private final String server_url = "http://ljs93kr2.cafe24.com/coil/backend/login/do_login.php";
-    private JSONObject loginObj;
+    private CoilAdminApplication app;
 
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+
+    private JSONObject loginObj;
 
     //디버그,빌드정보
     private final String ATTR_KEY_DEBUG_MODE = "debug_mode";
@@ -70,6 +74,8 @@ public class LoginActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        app = (CoilAdminApplication)getApplicationContext();
 
         // Get GCM Token
         registBroadcastReceiver();
@@ -169,7 +175,7 @@ public class LoginActivity extends AppCompatActivity{
 
 
             JsonObjectRequest myReq = new JsonObjectRequest(Request.Method.POST,
-                    server_url,
+                    SystemMain.URL.URL_LOGIN,
                     loginObj,
                     networkSuccessListener(),
                     networkErrorListener());
@@ -181,12 +187,12 @@ public class LoginActivity extends AppCompatActivity{
     }
     private boolean isEmailValid(String email) {
 
-        //if(!email.contains("010")||email.length()!=11)
-        //    return false;
+        if(!email.contains("010")||email.length()!=11)
+            return false;
 
-        //return true;
+        return true;
 
-        return email.contains("@");
+        //return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
@@ -202,11 +208,20 @@ public class LoginActivity extends AppCompatActivity{
                 Log.d(TAG,"Login success"+ response.toString());
                 try {
                     if(response.getBoolean("login")){
-                        Toast.makeText(LoginActivity.this,response.getString("message"), Toast.LENGTH_SHORT).show();
-//                        app.user_id = email;
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                        app.user_id = email;
+                        //app.user_permission=response.getString("user_permission");
+                        //if(app.user_permission.equals("admin")) {
+                            Toast.makeText(LoginActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                            startActivity(intent);
+                            finish();
+                        //}
+                        /*else if(app.user_permission.equals("shop")){
+                            Intent intent = new Intent(getApplicationContext(), ShopActivity.class);
+                            startActivity(intent);
+                            finish();
+
+                        }*/
                     }
                     else{
                         Toast.makeText(LoginActivity.this, response.getString("error_message"), Toast.LENGTH_SHORT).show();
@@ -214,7 +229,6 @@ public class LoginActivity extends AppCompatActivity{
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                //Intent intent  = new Intent(getApplicationContext(), MainActivity.class);
 
             }
         };
@@ -301,6 +315,11 @@ public class LoginActivity extends AppCompatActivity{
 
             }
         };
+    }
+
+    public void goJoin(View v){
+        Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
+        startActivity(intent);
     }
 }
 
