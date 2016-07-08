@@ -10,25 +10,39 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.gittest.cksrb.coiladmin.ui.ShopActivity"
-    tools:showIn="@layout/activity_shop">
+    tools:showIn="@layout/activity_shop"
+    android:orientation="vertical"
+    android:layout_weight="1">
 
     <RelativeLayout
         android:id="@+id/relativelayout"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="330dp"
         android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/imagebutton"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
+        <Button
+            android:id="@+id/roundbutton"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
+            android:background="@drawable/round_button"
             android:layout_centerHorizontal="true" />
 
+
+        <TextView
+            android:id="@+id/textview_id"
+            android:layout_width="280dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="160dp"
+            android:background="#000000"
+            android:layout_centerHorizontal="true"
+            />
+
         <RelativeLayout
+            android:id="@+id/relativelayout2"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:layout_below="@id/imagebutton"
+            android:layout_below="@id/textview_id"
             >
 
             <ImageView
@@ -36,6 +50,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="100dp"
+                android:background="#000000"
                 />
 
             <TextView
@@ -43,11 +58,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_toRightOf="@id/imageview"
-                android:layout_marginLeft="10dp"
                 android:gravity="center_vertical"
                 android:text="20000" />
 
         </RelativeLayout>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/relativelayout">
+        
+        <ImageButton
+            android:id="@+id/imagebutton"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="01045104782"/>
+        
+    </LinearLayout>
 </RelativeLayout>

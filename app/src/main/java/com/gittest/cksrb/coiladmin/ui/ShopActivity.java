@@ -6,10 +6,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import com.gittest.cksrb.coiladmin.R;
 
 public class ShopActivity extends AppCompatActivity {
+
+    private TextView textview_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +20,21 @@ public class ShopActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shop);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //textview_id=(TextView)findViewById(R.id.textview_id);
+        //textview_id.bringToFront();
+
+        /*
+        Window win = getWindow();
+
+        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LinearLayout linear = (LinearLayout)inflater.inflate(R.layout.content_shop,null);
+
+        LinearLayout.LayoutParams paramlinear = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,
+                LinearLayout.LayoutParams.FILL_PARENT);
+
+        win.addContentView(linear,paramlinear);
+*/
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
