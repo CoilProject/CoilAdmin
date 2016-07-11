@@ -4,6 +4,12 @@ import android.app.Application;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
+import com.gittest.cksrb.coiladmin.model.RequestInfo;
+import com.gittest.cksrb.coiladmin.util.RequestAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by cksrb on 2016. 7. 8..
  */
@@ -15,7 +21,7 @@ public class CoilAdminApplication extends Application {
     public int version_code;
     public boolean debug_mode;
 
-    //public RequestAll requestAll;
+    public RequestAll requestAll;
 
     @Override
     public void onCreate() {
@@ -43,6 +49,7 @@ public class CoilAdminApplication extends Application {
             e.printStackTrace();
         }
 
+        requestAll = new RequestAll();
     }
 /*
     public void requestAll(){
@@ -52,6 +59,47 @@ public class CoilAdminApplication extends Application {
     /**
      * 쿠폰 카드 정보를 저장하는 데이터
      */
+    public class RequestAll {
+        private boolean doNetwork;
+        private List<RequestInfo> itemList;
+        private RequestAdapter adapter;
+
+        public RequestAll(){
+            this.doNetwork = true;
+            itemList = new ArrayList<>();
+        }
+        public void listInit(){
+            itemList.clear();
+        }
+
+        public void setDoNetwork(boolean doNetwork){
+            this.doNetwork = doNetwork;
+        }
+
+        public boolean isDoNetwork() {
+            return doNetwork;
+        }
+        public List<RequestInfo> getItemList() {
+            return itemList;
+        }
+
+
+        public void setItemList(List<RequestInfo> itemList) {
+            this.itemList = itemList;
+        }
+
+        public void addItem(RequestInfo item){
+            itemList.add(item);
+        }
+        public void setAdapter(RequestAdapter adapter){
+            this.adapter = adapter;
+        }
+
+        public void notifyAdapter(){
+            adapter.notifyDataSetChanged();
+        }
+    }
+
     /*public class RequestAll {
         private boolean doNetwork;
         private List<RequestInfo> itemList;
