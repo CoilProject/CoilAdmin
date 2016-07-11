@@ -24,8 +24,8 @@
             android:id="@+id/roundbutton"
             android:layout_width="190dp"
             android:layout_height="190dp"
-            android:background="@drawable/round_button"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/round_button" />
 
 
         <TextView
