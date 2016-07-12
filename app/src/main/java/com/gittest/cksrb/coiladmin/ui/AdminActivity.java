@@ -65,17 +65,20 @@ public class AdminActivity extends AppCompatActivity
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
+        try {
+            prepareRequestData();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
         mAdapter = new RequestAdapter(app.requestAll.getItemList());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        try {
-            prepareRequestData();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
 
     }
 
