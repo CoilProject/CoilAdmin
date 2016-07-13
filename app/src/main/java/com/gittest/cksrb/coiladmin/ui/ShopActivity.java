@@ -9,12 +9,16 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gittest.cksrb.coiladmin.R;
+import com.gittest.cksrb.coiladmin.dialog.PointPushDialog;
 
 public class ShopActivity extends AppCompatActivity {
 
     private TextView textview_id;
+
+    private PointPushDialog pointPushDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +36,16 @@ public class ShopActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //포인트 발급화면
 
+                pointPushDialog = new PointPushDialog(getApplicationContext(),
+                        "[다이얼로그 제목]", // 제목
+                        leftListener, // 왼쪽 버튼 이벤트
+                        rightListener); // 오른쪽 버튼 이벤트
+                PointPushDialog.show;
 
                 //Intent intent = new Intent(getApplicationContext(),PointPushActivity.class);
                 //startActivity(intent);
             }
         });
-
-
 
 
 
@@ -51,5 +58,21 @@ public class ShopActivity extends AppCompatActivity {
             }
         });
     }
+
+    private View.OnClickListener leftListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Toast.makeText(getApplicationContext(), "왼쪽버튼 클릭",
+                    Toast.LENGTH_SHORT).show();
+            //PointPushDialog.dismiss();
+        }
+    };
+
+    private View.OnClickListener rightListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Toast.makeText(getApplicationContext(), "오른쪽버튼 클릭",
+                    Toast.LENGTH_SHORT).show();
+        }
+    };
+
 
 }
