@@ -5,8 +5,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -25,22 +25,22 @@ public class ShopActivity extends AppCompatActivity {
 
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.relativelayout);
 
-        textview_id=(TextView)findViewById(R.id.textview_id);
-        //textview_id.bringToFront();
-        layout.bringChildToFront(textview_id);
-        layout.invalidate();
-        Log.d("tt","new");
-        /*
-        Window win = getWindow();
 
-        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        LinearLayout linear = (LinearLayout)inflater.inflate(R.layout.content_shop,null);
+        ImageButton imagebutton = (ImageButton)findViewById(R.id.imagebutton);
+        imagebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //포인트 발급화면
 
-        LinearLayout.LayoutParams paramlinear = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,
-                LinearLayout.LayoutParams.FILL_PARENT);
 
-        win.addContentView(linear,paramlinear);
-*/
+                //Intent intent = new Intent(getApplicationContext(),PointPushActivity.class);
+                //startActivity(intent);
+            }
+        });
+
+
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

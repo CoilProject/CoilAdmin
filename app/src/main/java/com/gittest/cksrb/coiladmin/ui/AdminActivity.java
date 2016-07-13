@@ -65,20 +65,41 @@ public class AdminActivity extends AppCompatActivity
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
+
         try {
             prepareRequestData();
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-
         mAdapter = new RequestAdapter(app.requestAll.getItemList());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        app.requestAll.setAdapter(mAdapter);
         recyclerView.setAdapter(mAdapter);
 
+        try {
+            updateRequestInfo();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+
+    }
+
+    private void updateRequestInfo() throws JSONException{
+        JSONObject obj1 = new JSONObject();
+
+        obj1.put("store_id","123");
+        obj1.put("store_name","GGIGO");
+        obj1.put("created","2016 7 4 Mon");
+        obj1.put("request","50% discount");
+
+        app.requestAll.listInit();
+        app.requestAll.addItem(new RequestInfo(obj1));
+        app.requestAll.notifyAdapter();
 
     }
 

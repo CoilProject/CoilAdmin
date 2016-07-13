@@ -102,9 +102,11 @@ public class LoginActivity extends AppCompatActivity{
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+
+                Intent intent = new Intent(getApplicationContext(), ShopActivity.class);
                 startActivity(intent);
                 finish();
+
                 //attemptLogin();
             }
         });
@@ -214,16 +216,16 @@ public class LoginActivity extends AppCompatActivity{
                         app.user_id = email;
                         //app.user_permission=response.getString("user_permission");
                         //if(app.user_permission.equals("admin")) {
-                            Toast.makeText(LoginActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(LoginActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
                             startActivity(intent);
                             finish();
 
                         //}
                         //else if(app.user_permission.equals("shop")){
-                           // Intent intent = new Intent(getApplicationContext(), ShopActivity.class);
-                           // startActivity(intent);
-                           // finish();
+                            //Intent intent = new Intent(getApplicationContext(), ShopActivity.class);
+                            //startActivity(intent);
+                            //finish();
 
                         //}
                     }
