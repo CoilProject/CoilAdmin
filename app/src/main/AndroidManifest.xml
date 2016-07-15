@@ -77,8 +77,8 @@
             android:label="@string/title_activity_shop"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".ui.JoinActivity" />
-        <activity android:name=".ui.PointPushActivity"></activity>
-        <activity android:name=".dialog.PointPushDialog"></activity>
+        <activity android:name=".ui.PointPushActivity"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"/>
     </application>
 
 </manifest>

@@ -1,24 +1,28 @@
 package com.gittest.cksrb.coiladmin.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gittest.cksrb.coiladmin.CoilAdminApplication;
 import com.gittest.cksrb.coiladmin.R;
-import com.gittest.cksrb.coiladmin.dialog.PointPushDialog;
 
 public class ShopActivity extends AppCompatActivity {
 
-    private TextView textview_id;
+    private CoilAdminApplication app;
 
-    private PointPushDialog pointPushDialog;
+    private TextView textview_id;
+    private EditText textview_user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,7 @@ public class ShopActivity extends AppCompatActivity {
 
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.relativelayout);
 
+        textview_user_id =(EditText) findViewById(R.id.textview_user_id);
 
         ImageButton imagebutton = (ImageButton)findViewById(R.id.imagebutton);
         imagebutton.setOnClickListener(new View.OnClickListener() {
@@ -36,14 +41,10 @@ public class ShopActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //포인트 발급화면
 
-                pointPushDialog = new PointPushDialog(getApplicationContext(),
-                        "[다이얼로그 제목]", // 제목
-                        leftListener, // 왼쪽 버튼 이벤트
-                        rightListener); // 오른쪽 버튼 이벤트
-                PointPushDialog.show;
-
-                //Intent intent = new Intent(getApplicationContext(),PointPushActivity.class);
-                //startActivity(intent);
+                Log.d("HI",textview_user_id.getText().toString());
+                app.push_id="Hello";
+                Intent intent = new Intent(getApplicationContext(),PointPushActivity.class);
+                startActivity(intent);
             }
         });
 
