@@ -6,7 +6,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -14,8 +13,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.gittest.cksrb.coiladmin.CoilAdminApplication;
 import com.gittest.cksrb.coiladmin.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class ShopActivity extends AppCompatActivity {
 
@@ -23,6 +27,7 @@ public class ShopActivity extends AppCompatActivity {
 
     private TextView textview_id;
     private EditText textview_user_id;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,16 +46,40 @@ public class ShopActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //포인트 발급화면
-                app.push_id = textview_user_id.getText().toString();
-                Log.d("app.push_id",app.push_id);
-                Intent intent = new Intent(getApplicationContext(),PointPushActivity.class);
-                startActivity(intent);
+                intent = new Intent(getApplicationContext(),PointPushActivity.class);
+                intent.putExtra("push_id",textview_user_id.getText().toString());
 
+                //포인트 점수 받아오는 작업 추가
+                JSONObject obj = new JSONObject();
+                try {
+                    obj.put("user_id",textview_user_id.getText().toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                /* 아직 url이 없어요...
+                JsonObjectRequest myReq = new JsonObjectRequest(Request.Method.POST,
+                        SystemMain.URL.URL_ADD_POINT,
+                        obj,
+                        networkSuccessListener(),
+                        networkErrorListener());
+
+                final RequestQueue queue = MyVolley.getInstance(getApplicationContext()).getRequestQueue();
+                queue.add(myReq);
+                */
+
+                //
+
+                //요기는 테스트용
+                int user_current_point=100;
+                intent.putExtra("current_point",user_current_point);
+                startActivity(intent);
+                //요기까지
             }
         });
 
 
-
+        //원래 있던거....
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,20 +90,27 @@ public class ShopActivity extends AppCompatActivity {
         });
     }
 
-    private View.OnClickListener leftListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            Toast.makeText(getApplicationContext(), "왼쪽버튼 클릭",
-                    Toast.LENGTH_SHORT).show();
-            //PointPushDialog.dismiss();
-        }
-    };
+    private Response.Listener<JSONObject> networkSuccessListener() {
+        return new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
 
-    private View.OnClickListener rightListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            Toast.makeText(getApplicationContext(), "오른쪽버튼 클릭",
-                    Toast.LENGTH_SHORT).show();
-        }
-    };
+                try {
+                    intent.putExtra("current_point",response.getInt("user_point"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-
+                startActivity(intent);
+            }
+        };
+    }
+    private Response.ErrorListener networkErrorListener() {
+        return new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), R.string.volley_network_fail, Toast.LENGTH_SHORT).show();
+            }
+        };
+    }
 }

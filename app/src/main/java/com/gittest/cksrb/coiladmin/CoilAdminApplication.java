@@ -17,8 +17,6 @@ public class CoilAdminApplication extends Application {
 
     public String user_id;
     public String user_permission;
-    public String push_id;
-
 
     public int version_code;
     public boolean debug_mode;
