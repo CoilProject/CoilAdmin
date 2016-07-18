@@ -19,7 +19,7 @@ import org.json.JSONObject;
 
 public class PointPushActivity extends Activity {
     private EditText editText_add_point;
-
+    private Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +27,7 @@ public class PointPushActivity extends Activity {
         setContentView(R.layout.activity_point_push);
 
 
-        Intent intent = getIntent();
+        intent = getIntent();
 
         final TextView txt_title = (TextView)findViewById(R.id.txt_title);
         txt_title.setText(intent.getExtras().getString("push_id"));
@@ -50,6 +50,11 @@ public class PointPushActivity extends Activity {
                 try {
                     pointObj.put("user_id",txt_title.getText());
                     pointObj.put("add_point",Integer.parseInt(editText_add_point.getText().toString()));
+
+                    //push정보
+                    pointObj.put("shop_id",intent.getExtras().getString("shop_id"));
+                    pointObj.put("shop_password",intent.getExtras().getString("shop_password"));
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch(NumberFormatException e){
@@ -67,6 +72,7 @@ public class PointPushActivity extends Activity {
                 queue.add(myReq);
 */
                 //+푸쉬 요청메시지====success 에다가 넣어버릴까
+
 
                 //요기부터 테스트
                 Toast.makeText(getApplicationContext(), "포인트 발급 완료!", Toast.LENGTH_SHORT).show();
@@ -87,6 +93,7 @@ public class PointPushActivity extends Activity {
         return new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+
                 Toast.makeText(getApplicationContext(), "포인트 발급 완료!", Toast.LENGTH_SHORT).show();
                 //다이얼로그 종료
                 finish();
@@ -101,4 +108,22 @@ public class PointPushActivity extends Activity {
             }
         };
     }
+
+    //pushNetworkListener()
+/*
+    private Response.Listener<JSONObject> pushObjNetworkSuccessListener() {
+        return new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+            }
+        };
+    }
+    private Response.ErrorListener pushObjNetworkErrorListener() {
+        return new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        };
+    }
+*/
 }

@@ -16,6 +16,7 @@ import java.util.List;
 public class CoilAdminApplication extends Application {
 
     public String user_id;
+    public String user_password;
     public String user_permission;
 
     public int version_code;

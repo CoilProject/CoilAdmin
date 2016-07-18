@@ -69,6 +69,7 @@ public class LoginActivity extends AppCompatActivity{
     //private View mLoginFormView;
 
     private String email;
+    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,7 +130,7 @@ public class LoginActivity extends AppCompatActivity{
 
         // Store values at the time of the login attempt.
         email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        password = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -215,6 +216,7 @@ public class LoginActivity extends AppCompatActivity{
                 try {
                     if(response.getBoolean("login")){
                         app.user_id = email;
+                        app.user_password=password;
                         //app.user_permission=response.getString("user_permission");
                         //if(app.user_permission.equals("admin")) {
                            // Toast.makeText(LoginActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();

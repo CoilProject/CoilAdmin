@@ -97,6 +97,8 @@ public class ShopActivity extends AppCompatActivity {
 
                 try {
                     intent.putExtra("current_point",response.getInt("user_point"));
+                    intent.putExtra("shop_id",app.user_id);
+                    intent.putExtra("shop_password",app.user_password);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -73,12 +73,14 @@
         <ImageButton
             android:id="@+id/imagebutton"
             android:layout_width="60dp"
-            android:layout_height="60dp" />
+            android:layout_height="60dp"
+            android:background="@drawable/ic_menu_send"/>
 
         <EditText
             android:id="@+id/textview_user_id"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginTop="5dp"
             android:text="01045104782"
             />
         
