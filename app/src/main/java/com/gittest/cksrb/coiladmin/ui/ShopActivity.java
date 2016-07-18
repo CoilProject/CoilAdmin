@@ -33,6 +33,7 @@ public class ShopActivity extends AppCompatActivity {
 
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.relativelayout);
 
+        app = new CoilAdminApplication();
         textview_user_id =(EditText) findViewById(R.id.textview_user_id);
 
         ImageButton imagebutton = (ImageButton)findViewById(R.id.imagebutton);
@@ -40,11 +41,11 @@ public class ShopActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //포인트 발급화면
-
-                Log.d("HI",textview_user_id.getText().toString());
-                app.push_id="Hello";
+                app.push_id = textview_user_id.getText().toString();
+                Log.d("app.push_id",app.push_id);
                 Intent intent = new Intent(getApplicationContext(),PointPushActivity.class);
                 startActivity(intent);
+
             }
         });
 

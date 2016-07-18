@@ -79,7 +79,8 @@
             android:id="@+id/textview_user_id"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="01045104782"/>
+            android:text="01045104782"
+            />
         
     </LinearLayout>
 </RelativeLayout>
