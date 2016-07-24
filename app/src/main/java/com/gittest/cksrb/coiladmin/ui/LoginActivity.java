@@ -104,10 +104,12 @@ public class LoginActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
+
                 app.user_id=mEmailView.getText().toString();
                 Intent intent = new Intent(getApplicationContext(), ShopActivity.class);
                 startActivity(intent);
                 finish();
+
 
                 //attemptLogin();
             }
