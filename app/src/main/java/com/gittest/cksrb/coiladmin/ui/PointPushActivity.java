@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.gittest.cksrb.coiladmin.R;
+import com.gittest.cksrb.coiladmin.util.CoilAdminBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,7 +29,6 @@ public class PointPushActivity extends Activity {
 
 
         intent = getIntent();
-
         final TextView txt_title = (TextView)findViewById(R.id.txt_title);
         txt_title.setText(intent.getExtras().getString("push_id"));
 
@@ -46,25 +46,19 @@ public class PointPushActivity extends Activity {
                 //포인트 발급
                 //서버에 저장할 포인트
 
-                JSONObject pointObj = new JSONObject();
+                CoilAdminBuilder pointBuilder = new CoilAdminBuilder();
                 try {
-                    pointObj.put("user_id",txt_title.getText());
-                    pointObj.put("add_point",Integer.parseInt(editText_add_point.getText().toString()));
-
-                    //push정보
-                    pointObj.put("shop_id",intent.getExtras().getString("shop_id"));
-                    pointObj.put("shop_password",intent.getExtras().getString("shop_password"));
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    pointBuilder.setCustomAttribute("user_id",txt_title.getText())
+                            .setCustomAttribute("add_point",Integer.parseInt(editText_add_point.getText().toString()))
+                            .setCustomAttribute("shop_id",intent.getExtras().getString("shop_id"))
+                            .setCustomAttribute("shop_password",intent.getExtras().getString("shop_password"));
                 } catch(NumberFormatException e){
-                    Toast.makeText(getApplicationContext(), "포인트를 입력하여 주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "올바른 포인트를 입력하여 주세요.", Toast.LENGTH_SHORT).show();
                 }
-
                 /*요기도 url이 없어요ㅠ
                 JsonObjectRequest myReq = new JsonObjectRequest(Request.Method.POST,
                         SystemMain.URL.URL_ADD_POINT,
-                        pointObj,
+                        pointBuilder.build(),
                         networkSuccessListener(),
                         networkErrorListener());
 

@@ -28,6 +28,7 @@ import com.gittest.cksrb.coiladmin.CoilAdminApplication;
 import com.gittest.cksrb.coiladmin.R;
 import com.gittest.cksrb.coiladmin.gcm.QuickstartPreferences;
 import com.gittest.cksrb.coiladmin.gcm.RegisterationIntentService;
+import com.gittest.cksrb.coiladmin.util.CoilAdminBuilder;
 import com.gittest.cksrb.coiladmin.util.SystemMain;
 import com.gittest.cksrb.coiladmin.volley.MyVolley;
 import com.google.android.gms.common.ConnectionResult;
@@ -46,6 +47,8 @@ public class LoginActivity extends AppCompatActivity{
 
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
+    private CoilAdminBuilder loginBuilder;
+    /*
     private JSONObject loginObj;
 
     //디버그,빌드정보
@@ -57,7 +60,7 @@ public class LoginActivity extends AppCompatActivity{
     // version_code
     private final int version_code = 1;
 
-
+*/
     // GCM references
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private String gcm_token = null;
@@ -167,8 +170,9 @@ public class LoginActivity extends AppCompatActivity{
 //            mAuthTask.execute((Void) null);
             final RequestQueue queue = MyVolley.getInstance(getApplicationContext()).getRequestQueue();
 
-            loginObj = new JSONObject();
-            try {
+            loginBuilder = new CoilAdminBuilder(getApplicationContext());
+
+            /*
                 //디버그,빌드 정보
                 loginObj.put(ATTR_KEY_DEBUG_MODE,debug_mode);
                 loginObj.put(ATTR_KEY_BUILD_VERSION,version_code);
@@ -177,15 +181,18 @@ public class LoginActivity extends AppCompatActivity{
                 loginObj.put("user_id", email);
                 loginObj.put("user_pw",password);
                 loginObj.put("gcm_token",gcm_token);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            Log.d(TAG, "before network : "+loginObj.toString());
+                */
+
+            loginBuilder.setCustomAttribute("user_id",email)
+                    .setCustomAttribute("user_pw",password)
+                    .setCustomAttribute("gcm_token",gcm_token);
+
+            Log.d(TAG, "before network : "+loginBuilder.toString());
 
 
             JsonObjectRequest myReq = new JsonObjectRequest(Request.Method.POST,
                     SystemMain.URL.URL_LOGIN,
-                    loginObj,
+                    loginBuilder.build(),
                     networkSuccessListener(),
                     networkErrorListener());
 
@@ -273,8 +280,8 @@ public class LoginActivity extends AppCompatActivity{
     }
 
     /**
-     * Instance ID를 이용하여 디바이스 토큰을 가져오는 RegistrationIntentService를 실행한다.
-     */
+    * Instance ID를 이용하여 디바이스 토큰을 가져오는 RegistrationIntentService를 실행한다.
+            */
     public void getInstanceIdToken() {
         if (checkPlayServices()) {
             // Start IntentService to register this application with GCM.
